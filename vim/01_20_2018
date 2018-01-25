@@ -1,0 +1,108 @@
+" VIM CONFIG (Last Updated: 16 Jan 2018"
+set nocompatible             " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" Theme
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" Latex
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this lines
+
+"===========    Mapping and Bindings    =========="
+" editing and utilities
+filetype plugin on 
+syntax on
+set mouse=a									        " enable mouse support
+set laststatus=2							        " always show statusline
+set number									        " show line number
+set title									        " change terminal's title
+set backspace=indent,eol,start				        " allow backspace over autoindent
+set autowriteall							        " autosave files
+set completeopt-=preview
+set cursorline                                      " cursorline
+set clipboard=unnamedplus                           " use system clipboard
+
+
+" undo and history
+set scrolloff=8								        " start scrolling 8 lines away from margins
+set undofile								        " allow undo since creation of file
+set undodir=$HOME/.vim/undo					        " set undo directory
+set history=1000							        " increase history 
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set hidden
+
+
+" tab and indentation
+set tabstop=4								        " number of visual spaces per tab
+set softtabstop=4							        " number of space per tab when editing
+au FileType java setl sw=4 sts=4 et
+set expandtab								        " tabs are spaces
+set autoindent	        							"autoindent on a new line 
+set smartindent
+
+
+" search
+set incsearch  			        					" search as characters are entered
+set hlsearch   					        			" highlight matches
+set ignorecase 							        	" ignore case when searching lowercase
+set smartcase  							        	" don't ignore case when inserting uppercase characters
+
+
+" bindings
+inoremap ;; <Esc> :w<cr>							" map ;; to esc
+vnoremap ;; <Esc> :w<cr>							" map ;; to esc
+nnoremap ; :
+map <C-w> <Esc>:w<cr>
+nnoremap <Tab> i<Tab><Esc>
+
+vnoremap y :w !pbcopy<cr><cr>
+nnoremap p :r !pbpaste<cr>
+
+vnoremap <C-d> <Esc>:w<cr>:bd<cr>                   " close buffer
+nnoremap <C-d> :bd<cr>                              " closer buffer
+
+autocmd FileType txt nnoremap <F5> :PlugInstall<cr>                      " install plugins
+autocmd FileType python nnoremap <buffer> <F5> :exec '!clear; python3' shellescape(@%, 1)<cr>
+autocmd FileType java nnoremap <buffer> <F5> :! javac % <cr>
+autocmd FileType java nnoremap <buffer> <F6> :! java %:r <cr>
+
+nnoremap o o<Esc>									" insert new line but stays in normal mode
+nnoremap O O<Esc>									" insert new line above but stays in normal mode
+" leader
+let mapleader = ' '                                 " Leader Key
+nnoremap <silent> <leader><space> :nohlsearch<cr>	" clear the highlighting of :set hlsearch
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>            " quickly open vimrc
+nnoremap <leader>q  :x<cr>                          " easier quit
+nnoremap <leader>w  :w<cr>                          " save
+
+nnoremap <leader>c  :!latexmk -pdf<cr> 
+nnoremap <leader>t  :TTemplate<cr>
+
+"===========    Theme    =========="
+colorscheme monokai
+let g:airline_theme='onedark'
+
+"===========    Vim-Latex    ==========="
+" see Vim-Latex website for more details"
+let g:tex_flavor='latex'                            " file type change to tex
+au FileType tex setl sw=2 sts=2 et                  " tabs for tex files
+let g:Tex_CompileRule_pdf = 'latexmk -pdf -f $*'
+set iskeyword+=:
+let g:Imap_UsePlaceHolders = 0						" disable <++>
