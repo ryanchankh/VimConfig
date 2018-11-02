@@ -1,0 +1,36 @@
+## ALIASES 
+# Author: Ryan Chan
+# Last Updated: 28 June 2018
+
+
+# File directories
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+alias .6='cd ../../../../../../'            # Go back 6 directory levels
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# open shortcuts
+alias jp='jupyter notebook'
+alias py='python3 '
+
+# tmux
+alias tls='tmux ls'
+alias ta='tmux a -t '
+alias taa='tmux detach; tmux a -t '
+alias tnew='tmux new -s '
+alias td='tmux detach'
+alias tkill='tmux kill-session -t '
+alias tkillserver='tmux kill-server'
+
+# set vim in terminal
+set -o vi
+
+# iTerm2 color settings
+export TERM=xterm-256color
+export CLICOLOR=1
