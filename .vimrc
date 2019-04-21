@@ -54,11 +54,6 @@ set scrolloff=3                                     " spaces under cursor at bot
 " set cursorline                                      " cursorline (Disabled
 " for its slowness
 
-" copy and paste
-set clipboard=unnamed
-nnoremap y :.!pbcopy<cr>                            " copy to line clipboard
-nnoremap p :r !pbpaste<cr>                          " paste clip content to current line
-
 " undo and redo
 nnoremap u :undo<cr>                                " undo
 nnoremap U :redo<cr>                                " redo
